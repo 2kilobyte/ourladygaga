@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<HBox alignment="CENTER" prefHeight="731.0" prefWidth="1200.0" style="-fx-background-color: #16161E;" spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="HomeController">
+    <children>
+        <VBox prefWidth="400.0" style="-fx-background-color: #1A1B26;">
+            <children>
+                <VBox alignment="CENTER" prefHeight="60" prefWidth="400.0" style="-fx-background-color: #16161E;">
+                    <Label styleClass="username" fx:id="userNameLabel" style="-fx-pref-width: 400;" alignment="CENTER" textAlignment="CENTER" />
+                </VBox>
+                <VBox spacing="20" style="-fx-padding: 15 30;" alignment="CENTER" prefHeight="600" prefWidth="400.0">
+                    <Label styleClass="label-small" text="Add Daily Activity" />
+                    <Label style="-fx-text-fill: white;" prefWidth="400.0" text="Activity Type" />
+                    <ComboBox fx:id="activityComboBox" prefHeight="35.0" prefWidth="400.0"  />
+                    <Label style="-fx-text-fill: white;" prefWidth="400.0" text="Activity time" />
+                    <TextField fx:id="activityTimeField" promptText="Enter Activity Time" prefHeight="31.0" />
+                    <Button  prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #F44336; -fx-text-fill: white;" 
+                        styleClass="login-button" text="Submit" onAction="#handleSubmitButtonClick"/>
+                    <Label style="-fx-pref-width: 400;" alignment="CENTER" textAlignment="CENTER" fx:id="errorLabel" styleClass="error-label" textFill="red"/>
+                    <Label style="-fx-pref-width: 400;" alignment="CENTER" textAlignment="CENTER" fx:id="successLabel" styleClass="error-label" textFill="green"/>
+                </VBox>
+            </children>
+        </VBox>
+        <VBox prefWidth="800.0" style="-fx-background-color: #16161E;" alignment="CENTER">
+            <Label text="Daily Activities" style="-fx-font-size: 24; -fx-text-fill: white;" />
+            <ListView fx:id="activityListView" prefHeight="400" prefWidth="600" />
+        </VBox>
+    </children>
+</HBox>

@@ -1,0 +1,44 @@
+.label-style{
+    -fx-font-size: 24;
+    -fx-text-fill: white; 
+    -fx-font-family: "Book Antiqua Bold";
+    -fx-alignment: center;
+    -fx-spacing: 10;
+    -fx-pref-width: 1200;
+}
+.label-small{
+    -fx-font-size: 18;
+    -fx-text-fill: #26BDBB; 
+    -fx-font-family: "Book Antiqua Bold";
+    -fx-alignment: center;
+    -fx-spacing: 10;
+}
+
+.username {
+    -fx-font-size: 20;
+    -fx-text-fill: white; 
+    -fx-font-family: "Book Antiqua Bold";
+    -fx-alignment: center;
+    -fx-spacing: 10;
+}
+.text-field {
+    -fx-background-color: #f0f8ff; /* Light blue background */
+    -fx-text-fill: #333;            /* Dark text color */
+    -fx-font-size: 14px;            /* Font size */
+    -fx-padding: 10px;              /* Padding inside the text field */
+    -fx-border-color: #FFFFFF;      /* Border color */
+    -fx-border-radius: 5px;         /* Rounded corners */
+    -fx-border-width: 2px;       /* Border width */
+}
+
+.text-field:focused {
+    -fx-border-color: #005999;      /* Darker border when focused */
+    -fx-background-color: #e6f7ff;  /* Slightly darker background when focused */
+}
+
+.combo-box {
+    -fx-background-color: white; /* Background color */
+    -fx-border-color: #2f4f4f;   /* Border color */
+    -fx-border-radius: 5;        /* Border radius */
+    -fx-padding: 5;          /* Padding */
+}
