@@ -12,6 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 
 public class HomeController {
 
@@ -31,6 +32,56 @@ public class HomeController {
     private Label errorLabel; // Label to show error messages
     @FXML
     private Label successLabel; // Label to show error messages
+
+    @FXML
+    private Label jumpingJaksLv;
+    @FXML
+    private Label armCirclesLv;
+    @FXML
+    private Label legSwingsLv;
+    @FXML
+    private Label dynamicStretchesLv;
+    @FXML
+    private Label squatsLv;
+    @FXML
+    private Label cardioLv;
+    @FXML
+    private Label deadLiftLv;
+    @FXML
+    private Label benchPressLv;
+    @FXML
+    private Label overheadPressLv;
+    @FXML
+
+    private VBox boxjumpingJaksLv;
+    @FXML
+    private VBox boxarmCirclesLv;
+    @FXML
+    private VBox boxlegSwingsLv;
+    @FXML
+    private VBox boxdynamicStretchesLv;
+    @FXML
+    private VBox boxsquatsLv;
+    @FXML
+    private VBox boxcardioLv;
+    @FXML
+    private VBox boxdeadLiftLv;
+    @FXML
+    private VBox boxbenchPressLv;
+    @FXML
+    private VBox boxoverheadPressLv;
+
+
+
+    private int jumpingJaks = 0;
+    private int armCircles = 0;
+    private int legSwings = 0;
+    private int dynamicStretches = 0;
+    private int squats = 0;
+    private int cardio = 0;
+    private int deadLift = 0;
+    private int benchPress = 0;
+    private int overheadPress = 0;
 
     // Method to set user data in the new scene
     public void setUserData(String username, int userId) {
@@ -53,6 +104,16 @@ public class HomeController {
             "Overhead Press"
         );
         loadActivities();
+        last7DaysActivities(1);
+    }
+
+    public static boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     private void loadActivities() {
@@ -96,8 +157,8 @@ public class HomeController {
         errorLabel.setText("");
 
         // Check if fields are empty
-        if (activityType == null || activityTime.isEmpty()) {
-            errorLabel.setText("Activity type and time cannot be empty!");
+        if (activityType == null || activityTime.isEmpty() || !isNumeric(activityTime)) {
+            errorLabel.setText("Activity type and time cannot be empty! also time must be a number");
             return;
         }
 
@@ -123,6 +184,7 @@ public class HomeController {
                 activityComboBox.setValue("");
                 activityTimeField.setText("");
                 loadActivities();
+                last7DaysActivities(1);
             } else {
                 errorLabel.setText("Failed to submit activity!");
             }
@@ -130,5 +192,113 @@ public class HomeController {
             e.printStackTrace();
             errorLabel.setText("Database error: " + e.getMessage());
         }
+    }
+
+
+    private void last7DaysActivities (int day){
+        int userId =  Session.getUserId();
+
+        String query = "SELECT * FROM daily_activity " + "WHERE activity_date >= DATE_SUB(CURDATE(), INTERVAL "+ day +" DAY) " + "AND user_id = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(query)){
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            int jJaks = 0;
+            int aCircles = 0;
+            int lSwings = 0;
+            int dStretches = 0;
+            int sqt = 0;
+            int cdo = 0;
+            int dLift = 0;
+            int bPress = 0;
+            int ohPress = 0;
+
+            while (resultSet.next()) {
+                
+                String activityType = resultSet.getString("activity_data"); 
+                int activityTime = resultSet.getInt("activity_time");
+                System.out.println(activityType+ " " + activityTime);
+
+
+                switch (activityType) {
+                    case Activity.jumpingJaks:
+                        jJaks+= activityTime;
+                        break;
+                    case Activity.armCircles:
+                        aCircles+= activityTime;
+                        break;
+                    case Activity.legSwings:
+                        lSwings+= activityTime;
+                        break;
+                    case Activity.dynamicStretches:
+                        dStretches+= activityTime;
+                        break;
+                    case Activity.squats:
+                        sqt+= activityTime;
+                        break;
+                    case Activity.cardio:
+                        cdo+= activityTime;
+                        break;
+                    case Activity.deadLift:
+                        dLift+= activityTime;
+                        break;
+                    case Activity.benchPress:
+                        bPress+= activityTime;
+                        break;
+                    default:
+                        ohPress+= activityTime;
+                        break;
+                }
+            }
+            jumpingJaks = jJaks;
+            legSwings = lSwings;
+            armCircles = aCircles;
+            dynamicStretches = dStretches;
+            squats = sqt;
+            cardio = cdo;
+            deadLift = dLift;
+            benchPress = bPress;
+            overheadPress = ohPress;
+            setSummary();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    public void handle7DayButtonClick() {
+        last7DaysActivities(7);
+    }
+
+    @FXML
+    public void handleMonthButtonClick() {
+        last7DaysActivities(30);
+    }
+
+
+
+    private void setSummary() {
+        jumpingJaksLv.setText(jumpingJaks+"");
+        boxjumpingJaksLv.setStyle((jumpingJaks > 20) ? "-fx-border-color: green;" : (jumpingJaks > 0) ? "-fx-border-color: #CC4B1E; " : "-fx-border-color: red" );
+        armCirclesLv.setText(armCircles+"");
+        boxarmCirclesLv.setStyle((armCircles > 20) ? "-fx-border-color: green;" : (armCircles > 0) ? "-fx-border-color: #CC4B1E; " : "-fx-border-color: red" );
+        legSwingsLv.setText(legSwings+"");
+        boxlegSwingsLv.setStyle((legSwings > 20) ? "-fx-border-color: green;" : (legSwings > 0) ? "-fx-border-color: #CC4B1E; " : "-fx-border-color: red" );
+        dynamicStretchesLv.setText(dynamicStretches+"");
+        boxdynamicStretchesLv.setStyle((dynamicStretches > 20) ? "-fx-border-color: green;" : (dynamicStretches > 0) ? "-fx-border-color: #CC4B1E; " : "-fx-border-color: red" );
+        squatsLv.setText(squats+"");
+        boxsquatsLv.setStyle((squats > 20) ? "-fx-border-color: green;" : (squats > 0) ? "-fx-border-color: #CC4B1E; " : "-fx-border-color: red;" );
+        cardioLv.setText(cardio+"");
+        boxcardioLv.setStyle((cardio > 20) ? "-fx-border-color: green;" : (cardio > 0) ? "-fx-border-color: #CC4B1E; " : "-fx-border-color: red;" );
+        deadLiftLv.setText(deadLift+"");
+        System.out.println(deadLift);
+        boxdeadLiftLv.setStyle((deadLift > 20) ? "-fx-border-color: green;" : (deadLift > 0) ? "-fx-border-color: #CC4B1E; " : "-fx-border-color: red;" );
+        benchPressLv.setText(benchPress+"");
+        boxbenchPressLv.setStyle((benchPress > 20) ? "-fx-border-color: green;" : (benchPress > 0) ? "-fx-border-color: #CC4B1E; " : "-fx-border-color: red;" );
+        overheadPressLv.setText(overheadPress+"");
+        boxoverheadPressLv.setStyle((overheadPress > 20) ? "-fx-border-color: green;" : (overheadPress > 0) ? "-fx-border-color: #CC4B1E; " : "-fx-border-color: red;" );
     }
 }

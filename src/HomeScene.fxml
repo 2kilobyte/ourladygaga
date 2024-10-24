@@ -4,15 +4,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
 
-<HBox alignment="CENTER" prefHeight="731.0" prefWidth="1200.0" style="-fx-background-color: #16161E;" spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="HomeController">
+<HBox alignment="CENTER" prefHeight="850.0" prefWidth="1200.0" style="-fx-background-color: #16161E;" spacing="10" xmlns:fx="http://javafx.com/fxml" fx:controller="HomeController">
     <children>
         <VBox prefWidth="400.0" style="-fx-background-color: #1A1B26;">
             <children>
                 <VBox alignment="CENTER" prefHeight="60" prefWidth="400.0" style="-fx-background-color: #16161E;">
                     <Label styleClass="username" fx:id="userNameLabel" style="-fx-pref-width: 400;" alignment="CENTER" textAlignment="CENTER" />
                 </VBox>
-                <VBox spacing="20" style="-fx-padding: 15 30;" alignment="CENTER" prefHeight="600" prefWidth="400.0">
+                <VBox spacing="20" style="-fx-padding: 15 30;" alignment="CENTER" prefHeight="700" prefWidth="400.0">
                     <Label styleClass="label-small" text="Add Daily Activity" />
                     <Label style="-fx-text-fill: white;" prefWidth="400.0" text="Activity Type" />
                     <ComboBox fx:id="activityComboBox" prefHeight="35.0" prefWidth="400.0"  />
@@ -23,11 +24,55 @@
                     <Label style="-fx-pref-width: 400;" alignment="CENTER" textAlignment="CENTER" fx:id="errorLabel" styleClass="error-label" textFill="red"/>
                     <Label style="-fx-pref-width: 400;" alignment="CENTER" textAlignment="CENTER" fx:id="successLabel" styleClass="error-label" textFill="green"/>
                 </VBox>
+                <HBox alignment="CENTER" spacing="10">
+                    <Button  prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #7621DE; -fx-text-fill: white;" 
+                        styleClass="login-button" text="7 Days" onAction="#handle7DayButtonClick"/>
+                    <Button  prefHeight="40.0" prefWidth="180.0" style="-fx-background-color: #7621DE; -fx-text-fill: white;" 
+                        styleClass="login-button" text="30 Days" onAction="#handleMonthButtonClick"/>
+                </HBox>
             </children>
         </VBox>
-        <VBox prefWidth="800.0" style="-fx-background-color: #16161E;" alignment="CENTER">
-            <Label text="Daily Activities" style="-fx-font-size: 24; -fx-text-fill: white;" />
-            <ListView fx:id="activityListView" prefHeight="400" prefWidth="600" />
+        <VBox prefWidth="800.0" style="-fx-background-color: #16161E;">
+            <GridPane alignment="CENTER" style="-fx-padding: 15 10" hgap="10" vgap="10">
+                <VBox fx:id="boxjumpingJaksLv" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="circle-box" alignment="CENTER">
+                    <Label styleClass="number" fx:id="jumpingJaksLv" />
+                    <Label styleClass="n-text" text="Min Jumping" />
+                </VBox>
+                <VBox fx:id="boxarmCirclesLv" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="circle-box" alignment="CENTER">
+                    <Label styleClass="number" fx:id="armCirclesLv" />
+                    <Label styleClass="n-text" text="Min Arm circles" />
+                </VBox>
+                <VBox fx:id="boxlegSwingsLv" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="circle-box" alignment="CENTER">
+                    <Label styleClass="number" fx:id="legSwingsLv" />
+                    <Label styleClass="n-text" text="Min Leg swings" />
+                </VBox>
+                <VBox fx:id="boxdynamicStretchesLv" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="circle-box" alignment="CENTER">
+                    <Label styleClass="number" fx:id="dynamicStretchesLv" />
+                    <Label styleClass="n-text" text="Min Dynamic stretches" />
+                </VBox>
+                <VBox fx:id="boxsquatsLv" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="circle-box" alignment="CENTER">
+                    <Label styleClass="number" fx:id="squatsLv" />
+                    <Label styleClass="n-text" text="Min Squats" />
+                </VBox>
+                <VBox fx:id="boxcardioLv" GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="circle-box" alignment="CENTER">
+                    <Label styleClass="number" fx:id="cardioLv" />
+                    <Label styleClass="n-text" text="Min Cardio" />
+                </VBox>
+                <VBox fx:id="boxdeadLiftLv" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="circle-box" alignment="CENTER">
+                    <Label styleClass="number" fx:id="deadLiftLv" />
+                    <Label styleClass="n-text" text="Min Dead lift" />
+                </VBox>
+                <VBox fx:id="boxbenchPressLv" GridPane.columnIndex="3" GridPane.rowIndex="1" styleClass="circle-box" alignment="CENTER">
+                    <Label styleClass="number" fx:id="benchPressLv" />
+                    <Label styleClass="n-text" text="Min Bench Press" />
+                </VBox>
+                <VBox fx:id="boxoverheadPressLv" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="circle-box" alignment="CENTER">
+                    <Label styleClass="number" fx:id="overheadPressLv" />
+                    <Label styleClass="n-text" text="Min Overhead Press" />
+                </VBox>
+            </GridPane>
+            <Label text="Daily Activities" style="-fx-font-size: 18; -fx-text-fill: white;" />
+            <ListView fx:id="activityListView" prefHeight="320" prefWidth="600" />
         </VBox>
     </children>
 </HBox>

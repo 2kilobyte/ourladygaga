@@ -42,3 +42,19 @@
     -fx-border-radius: 5;        /* Border radius */
     -fx-padding: 5;          /* Padding */
 }
+
+.circle-box{
+    -fx-pref-width: 150;
+    -fx-pref-height: 150;
+    -fx-border-radius: 50%; 
+    -fx-border-width: 5px;
+}
+
+.number{
+    -fx-font-size: 28;
+    -fx-text-fill: #FFFFFF;
+}
+.n-text{
+    -fx-font-size: 12;
+    -fx-text-fill: #e0e0e0;
+}
