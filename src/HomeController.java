@@ -29,9 +29,9 @@ public class HomeController {
     private TextField activityTimeField; 
 
     @FXML
-    private Label errorLabel; // Label to show error messages
+    private Label errorLabel;
     @FXML
-    private Label successLabel; // Label to show error messages
+    private Label successLabel; 
 
     @FXML
     private Label jumpingJaksLv;
@@ -153,10 +153,9 @@ public class HomeController {
         String dateString = currentDate.format(formatter);
 
 
-        // Clear previous error message
+
         errorLabel.setText("");
 
-        // Check if fields are empty
         if (activityType == null || activityTime.isEmpty() || !isNumeric(activityTime)) {
             errorLabel.setText("Activity type and time cannot be empty! also time must be a number");
             return;
@@ -166,9 +165,9 @@ public class HomeController {
         int time = Integer.parseInt(activityTime);
 
 
-        int userId = Session.getUserId(); // Implement this 
+        int userId = Session.getUserId();
 
-        // Insert data into database
+
         String insertSQL = "INSERT INTO daily_activity (user_id, activity_data, activity_time, activity_date) VALUES (?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.getConnection();

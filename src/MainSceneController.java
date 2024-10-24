@@ -15,10 +15,10 @@ import javafx.scene.control.Label;
 public class MainSceneController {
 
     @FXML
-    private TextField usernameField;  // FXML reference for the username text field
+    private TextField usernameField;  
 
     @FXML
-    private PasswordField passwordField;  // FXML reference for the password field
+    private PasswordField passwordField; 
 
     @FXML
     private Label errorLabel;
@@ -26,7 +26,7 @@ public class MainSceneController {
     @FXML
     private Label successLabel;
 
-    // This method will be called when the Login button is clicked
+    
     @FXML
     public void handleLoginButtonClick() {
         // Retrieve the username and password entered by the user
@@ -103,18 +103,18 @@ public class MainSceneController {
 
 
     private void loadHomeScene(String username, int userId) throws Exception {
-        // Load the new scene
+ 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("HomeScene.fxml"));
         Parent homeScene = loader.load();
 
         homeScene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-        // Get the controller of the new scene
+
         HomeController homeController = loader.getController();
 
-        // Pass data to the new scene
+
         homeController.setUserData(username, userId);
 
-        // Set the new scene on the stage
+
         Stage stage = (Stage) usernameField.getScene().getWindow();
         stage.setScene(new Scene(homeScene));
     }
