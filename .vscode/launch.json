@@ -6,9 +6,17 @@
     "configurations": [
         {
             "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "ourladygaga_ab53a702",
+            "vmArgs": "--module-path \"C:/Java/javafx-sdk-23.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
-            "mainClass": "${file}",
+            "mainClass": "${file}"
         },
         {
             "type": "java",
