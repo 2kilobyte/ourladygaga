@@ -9,7 +9,7 @@ ourladygaga is a fitness tracker application.
 - Download JavaFX from [here](https://download2.gluonhq.com/openjfx/23.0.1/openjfx-23.0.1_windows-x64_bin-sdk.zip). unzip the file and you will se a folder move that folder to `C:/Java/javafx-sdk-23.0.1`. if you don't found Java folder Create one
 - install git bash from [here](https://github.com/git-for-windows/git/releases/download/v2.47.0.windows.1/Git-2.47.0-64-bit.exe)
 - install vs code from [here](https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user)
-- open vs code and add package called "Extension pac for java" after adding package close vs code.
+- open vs code and add package called "Extension pack for java" after adding package close vs code.
 - download and install mysql database from [here](https://dev.mysql.com/downloads/installer/) if you don't installed mysql database.
 
 ![image](https://github.com/user-attachments/assets/5bf636d4-ddf1-4a4d-9b48-4317001790fc)
